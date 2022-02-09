@@ -21,6 +21,7 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 
 @CrossOriginResourceSharing(allowAllOrigins = true)
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @Path("/users")
 @Produces({MediaType.APPLICATION_JSON})
 @Consumes({MediaType.APPLICATION_JSON})
