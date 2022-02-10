@@ -1,1 +1,2 @@
-URL: http://localhost:8080/
+1. Start Tomcat with URL: http://localhost:8080/rest/users
+2. Start Angular app with command: ng serve

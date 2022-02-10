@@ -1,0 +1,112 @@
+<div class="col-md-6 offset-md-3">
+  <h3> Edit User </h3>
+  <form name="form" #userForm="ngForm" (ngSubmit)="userForm.form.valid && onSubmit()" novalidate class="feedback-form">
+
+    <div class="form-group">
+      <label>Login</label>
+      <input type="text" class="form-control" id="login" name="login"
+             [(ngModel)]="user.login"
+             #login="ngModel" required minlength="3" pattern="[a-zA-Z0-9]+"
+             [ngClass]="{'is-invalid': userForm.submitted && login.invalid}">
+
+      <div *ngIf="userForm.submitted && login.invalid" class="invalid-input">
+        <div *ngIf="login.errors?.['required']"> Login is required</div>
+        <div *ngIf="login.errors?.['minlength']">Login must be at least 3 characters long</div>
+        <div *ngIf="login.errors?.['pattern']">You shouldn't use spaces in login</div>
+      </div>
+    </div>
+
+    <br/>
+
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" class="form-control" id="password" name="password"
+             [(ngModel)]="user.password"
+             #password="ngModel" required minlength="4"
+             [ngClass]="{'is-invalid': userForm.submitted && password.invalid}">
+      <div *ngIf="userForm.submitted && password.invalid" class="invalid-input">
+        <div *ngIf="password.errors?.['required']"> Password is required</div>
+        <div *ngIf="password.errors?.['minlength']">Password must be at least 4 signs long</div>
+      </div>
+    </div>
+    <br/>
+
+    <div class="form-group">
+      <label>FirstName</label>
+      <input type="text" class="form-control" id="firstName" name="firstName"
+             [(ngModel)]="user.firstName"
+             #firstName="ngModel" required minlength="2" pattern="[a-zA-Z0-9]+"
+             [ngClass]="{'is-invalid': userForm.submitted && firstName.invalid}">
+      <div *ngIf="userForm.submitted && firstName.invalid" class="invalid-input">
+        <div *ngIf="firstName.errors?.['required']">FirstName is required</div>
+        <div *ngIf="firstName.errors?.['minlength']">FirstName must be at least 2 characters long</div>
+        <div *ngIf="firstName.errors?.['pattern']">FirstName must have only letters</div>
+      </div>
+    </div>
+
+    <br/>
+
+    <div class="form-group">
+      <label>LastName</label>
+      <input type="text" class="form-control" id="lastName" name="lastName"
+             [(ngModel)]="user.lastName"
+             #lastName="ngModel" required minlength="2" pattern="[a-zA-Z0-9]+"
+             [ngClass]="{'is-invalid': userForm.submitted && lastName.invalid}">
+      <div *ngIf="userForm.submitted && lastName.invalid" class="invalid-input">
+        <div *ngIf="lastName.errors?.['required']">Lastname is required</div>
+        <div *ngIf="lastName.errors?.['minlength']">Lastname must be at least 2 characters long</div>
+        <div *ngIf="lastName.errors?.['pattern']">Lastname must have only letters</div>
+      </div>
+    </div>
+
+    <br/>
+
+    <div class="form-group">
+      <label>Birthday</label>
+      <input type="date" class="form-control" id="birthday" name="birthday"
+             [(ngModel)]="user.birthday"
+             required min="1900-01-01" max="2020-01-01"
+             #birthday="ngModel"
+             [ngClass]="{'is-invalid':userForm.submitted && birthday.invalid}">
+      <div *ngIf="userForm.submitted && birthday.invalid" class="invalid-input">
+        <div *ngIf="birthday.errors?.['required']">Please, enter your date of birth</div>
+        <div *ngIf="birthday.errors?.['min']">Can you still see something?</div>
+        <div *ngIf="birthday.errors?.['max']">Sorry, but you are too young</div>
+      </div>
+    </div>
+
+    <br/>
+
+    <div class="form-group">
+      <label>Email</label>
+      <input type="mail" class="form-control" id="email" name="email"
+             [(ngModel)]="user.email"
+             #email="ngModel" required email
+             [ngClass]="{'is-invalid': userForm.submitted && email.invalid}">
+      <div *ngIf="userForm.submitted && email.invalid" class="invalid-input">
+        <div *ngIf="email.errors?.['required']">Email is required</div>
+        <div *ngIf="email.errors?.['email']">Is not email</div>
+      </div>
+    </div>
+
+    <br/>
+
+    <div class="form-group">
+      <label>Role</label>
+      <select id="roleName" [(ngModel)]="user.role.name" name="roleName" class="form-select"
+              required
+              #roleName="ngModel"
+              [ngClass]="{'is-invalid': userForm.submitted && roleName.invalid}">
+        <option value="User">User</option>
+        <option value="Admin">Admin</option>
+      </select>
+      <div *ngIf="userForm.submitted && roleName.invalid" class="invalid-input">
+        <div *ngIf="roleName.errors?.['required']">Please choose the role</div>
+      </div>
+    </div>
+
+    <br/>
+    <button class="btn btn-success" type="submit">Update</button>
+
+  </form>
+</div>
