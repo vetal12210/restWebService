@@ -10,9 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.NoResultException;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
+@Transactional
 @Log4j2
 public class HibernateRoleDao implements RoleDao {
     private final SessionFactory sessionFactory;
